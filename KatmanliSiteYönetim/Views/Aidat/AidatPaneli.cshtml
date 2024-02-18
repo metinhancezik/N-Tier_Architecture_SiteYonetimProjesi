@@ -1,0 +1,72 @@
+﻿@using EntityLayer.Concrete
+@model List<AidatView>
+
+@{
+    ViewData["Title"] = "AidatPaneli";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+
+<div class="justify-content-center p-5">
+    <h1>Aidat Paneline Hoş Geldiniz</h1>
+    <br />
+    
+<div class="container">
+	@using (Html.BeginForm())
+	{
+    <div class="form-group mb-2">
+        <div style="width:25%;float:left">
+			@Html.TextBox("filterAra",null,new{@class="form-control",@placeholder="Filtrelenecek Kelimeyi Yazınız"})
+        </div>
+
+
+        <div style="float:left;margin-left:20px;margin-bottom:20px;">
+            <input  type="submit" name="btn" value="Ara" class="btn btn-info" />
+        </div>
+
+    </div>
+ }
+</div>
+
+
+        <table class="table table-active">
+            <tr>
+                <th>SiteID</th>
+                <th>Blok Numarası</th>
+                <th>Daire Numarası</th>
+                <th>Oturan Kişi</th>
+                <th>Borç</th>
+                <th>Ödenmiş Para</th>
+                <th>Borcu </th>
+                <th>Tarih</th>
+                <th>Ödeme</th>
+            </tr>
+        @foreach (var item in Model.Where(x => x.SiteID == ViewBag.siteID))
+        {
+                <tr>
+                     <td>@ViewBag.siteID</td>
+                    <td>@item.BlokID</td>
+                    <td>@item.DaireID</td>
+                    <td>@item.OturanKisiName</td>
+                    <td>@item.Tutar</td>
+                    <td>@item.Odenmis</td>
+                    @if (item.Odenmis - item.Tutar > 0)
+                    {
+                        <td>+@(item.Odenmis - item.Tutar)</td>
+                    }
+                    else
+                    {
+                        <td>@(item.Odenmis - item.Tutar)</td>
+                    }
+
+                    <td>@item.Date</td>
+                    <td><a href="/Aidat/OdemeEkle/@item.AidatID " class="btn btn-info">Borç Öde</a></td>
+                </tr>
+            }
+        </table>
+        <a href="@Url.Action("AidatEkle", "Aidat")" class="btn btn-outline-success">Aidat Ekle</a>
+
+   
+
+
+</div>

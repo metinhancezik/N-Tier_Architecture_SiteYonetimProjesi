@@ -1,0 +1,38 @@
+﻿
+
+
+
+
+@using EntityLayer.Concrete
+
+@model Site
+
+@{
+    ViewData["Title"] = "SiteDuzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<h1>@Model.SiteName   Sitesi Detayları Paneli</h1>
+<br />
+@*
+
+<p>@Model.SiteName</p>
+
+<p>@Model.IsitmaTipi</p>
+
+*@
+
+@await Component.InvokeAsync("SiteDetay", new { siteId = Model.SiteID })
+                             
+@await Component.InvokeAsync("BlokDetay", new { siteId = Model.SiteID })
+                            
+@await Component.InvokeAsync("DaireDetay", new {siteId = Model.SiteID })
+                                
+   
+
+
+
+
+
+
+
+

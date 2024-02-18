@@ -1,0 +1,91 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with Steller landing page.">
+    <meta name="author" content="Devcrud">
+
+    <link href="~/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/twitter-bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/twitter-bootstrap/css/bootstrap.rtl.css" rel="stylesheet" />
+    <link href="~/twitter-bootstrap/css/bootstrap.rtl.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/alertify.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/css/themes/default.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/AlertifyJS/1.13.1/alertify.min.js"></script>
+
+    <script>
+        function showConfirmDialog(event) {
+            event.preventDefault();
+            alertify.confirm(
+                "Silmek İstediğinize Emin Misiniz?",
+                function () {
+                    window.location.href = event.target.href;
+                },
+                function () {
+                    alertify.error('Silme işlemi iptal edildi.');
+                }
+            ).set('labels', { ok: 'Evet', cancel: 'Hayır' });
+        }
+    </script>
+
+</head>
+<body>
+
+    <div class="row">
+
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark col-3 min-vh-100">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <svg class="bi pe-none me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+                <span class="fs-4">Site Yönetim Paneli</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+
+                <a href="@Url.Action("SiteYonetimPaneli", "Yonetim")" class="nav-link text-white">
+                        Yönetici Paneli
+                    </a>
+                </li>
+
+           
+                <li>
+                    <a href="@Url.Action("KiracıVeMalSahibiPaneli", "KiracıVeMalSahibi")" class="nav-link text-white">
+                        Kiracı & Ev Sahipleri Paneli
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("AidatPaneli", "Aidat")" class="nav-link text-white">
+                        Aidat İşlemleri Paneli
+                    </a>
+                </li>
+                <li>
+                    <a href="@Url.Action("GiderPaneli", "Gider")" class="nav-link text-white">
+                        Site Giderleri Paneli
+                    </a>
+                </li>
+                <br />
+                    <li>
+                    <a href="@Url.Action("LoginPanel", "Login")" class="btn btn-danger">
+                        Çıkış
+                    </a>
+                </li>
+
+            </ul>
+            <hr>
+
+        </div>
+ 
+        <div class="container col-9">
+            @RenderBody()
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,44 @@
+﻿@model EntityLayer.Concrete.Gider
+@{
+    ViewData["Title"] = "GiderEkle";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+
+
+
+<div class="justify-content-center p-5">
+
+    <h1>Gider Ekleme Paneline Hoş Geldiniz</h1>
+    <br />
+
+    @using (Html.BeginForm("GiderEkle", "Gider", FormMethod.Post))
+    {
+   
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Harcama Türü</label>
+            @Html.TextBoxFor(x=>x.HarcamaCinsi, new{@class="form-control"})
+            @*@Html.ValidationMessageFor(x=>x.Adres,"", new{@class="text-danger"}) *@
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Harcanan Şirket</label>
+            @Html.TextBoxFor(x=>x.Sirket, new{@class="form-control"})
+            @* @Html.ValidationMessageFor(x=>x.Sehir,"", new{@class="text-danger"})*@
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Extra Bilgi</label>
+            @Html.TextBoxFor(x=>x.ExtraInformation, new{@class="form-control"})
+            @* @Html.ValidationMessageFor(x=>x.BlokSayısı,"", new{@class="text-danger"})*@
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Harcanan Tutar</label>
+            @Html.TextBoxFor(x=>x.HarcananTutar, new{@class="form-control"})
+            @* @Html.ValidationMessageFor(x=>x.DaireSayısı,"", new{@class="text-danger"})*@
+        </div>
+    
+        <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+</div>
+
+

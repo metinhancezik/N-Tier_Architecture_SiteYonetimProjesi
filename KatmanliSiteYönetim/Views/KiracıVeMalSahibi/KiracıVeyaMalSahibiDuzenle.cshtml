@@ -1,0 +1,64 @@
+﻿@model EntityLayer.Concrete.EvSahibiKiraci
+@{
+    ViewData["Title"] = "KiracıVeyaMalSahibiDuzenle";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+
+<h1>Blok Düzenleme  Paneline Hoş Geldiniz<</h1>
+<br />
+<div class="justify-content-center p-5">
+
+
+
+    @using (Html.BeginForm("KiraciVeyaMalSahibiUpdate", "KiracıVeMalSahibi", FormMethod.Post))
+    {
+
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">İsim</label>
+            @Html.TextBoxFor(x=>x.Name, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Name,"", new{@class="text-danger"})
+        </div>
+               <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Soy İsim<label>
+            @Html.TextBoxFor(x=>x.Surname, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Surname,"", new{@class="text-danger"})
+                </div>
+                       <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Telefon</label>
+            @Html.TextBoxFor(x=>x.Telefon, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Telefon,"", new{@class="text-danger"})
+                </div>
+                       <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Mail</label>
+            @Html.TextBoxFor(x=>x.Mail, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Mail,"", new{@class="text-danger"})
+                </div>
+
+            <div class="mb-3">
+            @Html.HiddenFor(x => x.EvSahibiID)
+            @Html.HiddenFor(x => x.DaireID)
+            </div>
+        <div class="mb-3">
+            <label for="role" class="form-label">Rol</label>
+            <div>
+                <label>
+                    @Html.RadioButtonFor(x => x.Role, "Ev Sahibi", new { @class = "form-check-input" })
+                    <span class="form-check-label">Ev  Sahibi</span>
+                </label>
+            </div>
+            <div>
+                <label>
+                    @Html.RadioButtonFor(x => x.Role, "Kiracı", new { @class = "form-check-input" })
+                    <span class="form-check-label">Kiracı</span>
+                </label>
+            </div>
+          
+        </div>
+
+                <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+
+</div>
+

@@ -1,0 +1,45 @@
+﻿@model EntityLayer.Concrete.Daire
+@{
+    ViewData["Title"] = "DaireDuzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Daire Düzenleme  Paneline Hoş Geldiniz<</h1>
+<br />
+<div class="justify-content-center p-5">
+
+
+
+    @using (Html.BeginForm("DaireUpdate", "DaireIslemleri", FormMethod.Post))
+    {
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">@ViewBag.siteIdTut Site Id</label>
+
+            @Html.DropDownListFor(x => x.BlokID, (List<SelectListItem>)ViewBag.BlokIdListesi, "Blok Seçiniz", new { @class = "form-control" })
+
+            @Html.ValidationMessageFor(x => x.BlokID, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"> Kat Numarası</label>
+            @Html.TextBoxFor(x=>x.KatNumarasi, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.KatNumarasi,"", new{@class="text-danger"})
+        </div>
+
+           <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Extra Bilgi</label>
+            @Html.TextBoxFor(x=>x.ExtraInformation, new{@class="form-control"})
+            
+        </div>
+
+        <div class="mb-3">
+            @Html.HiddenFor(x => x.DaireID)
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+
+</div>

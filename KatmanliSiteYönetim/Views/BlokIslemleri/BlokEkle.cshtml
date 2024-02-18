@@ -1,0 +1,37 @@
+﻿@model EntityLayer.Concrete.Blok
+
+
+@{
+    ViewData["Title"] = "BlokEkle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="justify-content-center p-5">
+
+    <h1>Blok Ekleme Paneline Hoş Geldiniz</h1>
+    <br />
+    
+
+        @using (Html.BeginForm("BlokEkle", "BlokIslemleri", FormMethod.Post))
+    {
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">@ViewBag.siteIdTut Site Id</label>
+            @Html.DropDownListFor(x => x.SiteID, ViewBag.SiteSelectList as SelectList, "Site Seçiniz", new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.SiteID, "", new { @class = "text-danger" })
+
+
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Blok İsmi</label>
+            @Html.TextBoxFor(x=>x.BlokName, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.BlokName,"", new{@class="text-danger"})
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+
+</div>

@@ -1,0 +1,55 @@
+﻿@using EntityLayer.Concrete
+@model List<User>
+@{
+    ViewData["Title"] = "AdminUser";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Üyelik İşlemleri Paneline Hoş geldiniz</h1>
+
+<br />
+<h4>Düzenlemek İstediğiniz Üyeyi Seçiniz veya Yenisi Ekleyiniz</h4>
+
+
+
+
+
+
+
+
+<div class="p-2" id="tableSırala">
+</div>
+
+<a href="@Url.Action("UserPaneli", "UserIslemleri")" class="btn btn-outline-success">Ekle</a>
+
+
+
+@section Scripts {
+
+    <script>
+
+        $(document).ready(function () {
+            let mainCategory = "User";
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/ListUser/",
+                data: { MainCategory: mainCategory },
+                success: function (data) {
+                    console.log(data);
+                    let htmlst = "<table class='table table-bordered'> <tr><th> Kullanıcı İsmi</th><th> Telefon Numarası </th>  <th> E-mail adresi </th>    <th> Rolü </th>     <th>Yönetici Kodu</th> <th> Sil </th><th> Düzenle </th>";
+                    $.each(JSON.parse(data), (index, value) => {
+                        htmlst += `<tr>  <td>${value.userName} </td> <td>${value.phone} </td> <td>${value.email} </td> <td>${value.role} </td> <td>${value.YoneticiID} </td> <td><a href="/UserIslemleri/userSil/${value.UserID}" class="btn btn-outline-danger" onclick="showConfirmDialog(event)">Sil</a></td> <td> <a href="/UserIslemleri/userDuzenle/${value.UserID}" class="btn btn-outline-primary">Düzenle</a>  </td> </td> </tr>`;
+                    });
+                    htmlst += "</table>";
+                    $("#tableSırala").html(htmlst);
+                }
+            });
+
+        });
+
+
+    </script>
+}
+

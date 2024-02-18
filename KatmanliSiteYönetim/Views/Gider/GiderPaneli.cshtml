@@ -1,0 +1,55 @@
+﻿@using EntityLayer.Concrete
+@model List<Gider>
+@{
+    ViewData["Title"] = "GiderPaneli";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+<h1>Giderler</h1>
+
+<div class="container">
+	@using (Html.BeginForm())
+	{
+    <div class="form-group mb-2">
+        <div style="width:25%;float:left">
+			@Html.TextBox("filterAra",null,new{@class="form-control",@placeholder="Filtrelenecek Kelimeyi Yazınız"})
+        </div>
+
+
+        <div style="float:left;margin-left:20px;margin-bottom:20px;">
+            <input  type="submit" name="btn" value="Ara" class="btn btn-info" />
+        </div>
+
+    </div>
+ }
+</div>
+        
+   
+
+<table class="table table-bordered ">
+    <tr>
+
+    <th> Harcama Türü   </th>
+    <th>  Anlaşılan Şirket  </th>
+    <th>  Extra Bilgi  </th>
+    <th> Harcanılan Tutar   </th>
+    <th>   Tarih  </th>
+
+	</tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+
+            <td>@item.HarcamaCinsi</td>
+            <td> @item.Sirket </td>
+            <td>@item.ExtraInformation  </td>
+            <td> @item.HarcananTutar </td>
+            <td>@item.Date </td>
+ 
+
+        </tr>
+    }
+
+
+</table>
+<a href="@Url.Action("GiderEkle", "Gider")" class="btn btn-outline-success">Ekle</a>

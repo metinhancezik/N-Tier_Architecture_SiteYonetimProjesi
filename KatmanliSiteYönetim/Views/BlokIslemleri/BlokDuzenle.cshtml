@@ -1,0 +1,44 @@
+﻿@model EntityLayer.Concrete.Blok
+@{
+    ViewData["Title"] = "BlokDuzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<h1>Blok Düzenleme  Paneline Hoş Geldiniz<</h1>
+<br />
+<div class="justify-content-center p-5">
+
+
+
+    @using (Html.BeginForm("BlokUpdate", "BlokIslemleri", FormMethod.Post))
+    {
+
+            <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">@ViewBag.siteIdTut Site Id</label>
+        
+            @Html.DropDownListFor(x => x.SiteID, (List<SelectListItem>)ViewBag.siteIdListesi, "Site Seçiniz", new { @class = "form-control" })
+
+
+
+
+           
+            @Html.ValidationMessageFor(x => x.SiteID, "", new { @class = "text-danger" })
+
+
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Blok İsmi</label>
+            @Html.TextBoxFor(x=>x.BlokName, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.BlokName,"", new{@class="text-danger"})
+            </div>
+        <div class="mb-3">
+        @Html.HiddenFor(x => x.BlokID)
+        </div>
+
+            <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+
+</div>

@@ -1,0 +1,79 @@
+﻿  @model List<EntityLayer.Concrete.EvSahibiKiraci>
+@{
+    ViewData["Title"] = "KiracıVeMalSahibiPaneli";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+
+
+<h1> Ev Sahibi&Kiracı Yönetim Paneline Hoş Geldiniz</h1>
+
+
+
+<br />
+
+<div class="container">
+	@using (Html.BeginForm())
+	{
+    <div class="form-group mb-2">
+        <div style="width:25%;float:left">
+			@Html.TextBox("filterAra",null,new{@class="form-control",@placeholder="Filtrelenecek Kelimeyi Yazınız"})
+        </div>
+
+
+        <div style="float:left;margin-left:20px;margin-bottom:20px;">
+            <input  type="submit" name="btn" value="Ara" class="btn btn-info" />
+        </div>
+
+    </div>
+ }
+</div>
+
+
+
+
+
+<table class="table table-bordered">
+    <tr>
+        <th>Blok Numarası</th>
+        <th>Daire Numarası</th>
+        <th>Role</th>
+        <th>İsim</th>
+        <th>Soy İsim</th>
+        <th>Telefon</th>
+        <th>Mail</th>
+    
+        <th>Sil</th>
+        <th>Düzenle</th>
+    </tr>
+
+    @foreach (var evSahibi in Model)
+    {
+       
+            <tr>
+            
+             <td>@evSahibi.Daire.Blok.BlokName</td>
+            <td>@evSahibi.Daire.DaireID</td>
+            <td>@evSahibi.Role</td>
+            <td>@evSahibi.Name</td>
+            <td>@evSahibi.Surname</td>
+            <td>@evSahibi.Telefon</td>
+            <td>@evSahibi.Mail</td>
+ 
+                <td>
+                <a href="/KiracıVeMalSahibi/KiracıVeyaMalSahibiSil/@evSahibi.EvSahibiID" class="btn btn-outline-danger" onclick="showConfirmDialog(event)">Sil</a>
+            </td>
+                <td>
+                <a href="/KiracıVeMalSahibi/KiracıVeyaMalSahibiDuzenle/@evSahibi.EvSahibiID" class="btn btn-primary">Düzenle </a>
+            </td>
+
+
+            </tr>
+        
+    }
+</table>
+
+<a href="@Url.Action("BlokSec", "KiracıVeMalSahibi")" class="btn btn-outline-success">Ekle</a>
+
+
+

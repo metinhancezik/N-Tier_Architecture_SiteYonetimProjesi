@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Concrete.Site
+@{
+    ViewData["Title"] = "SiteDuzenle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>Site Duzenleme Kısmına Hoş Geldiniz</h1>
+
+<br />
+    <div class="justify-content-center p-5">
+
+          
+
+    @using (Html.BeginForm("SiteUpdate", "SiteIslemleri", FormMethod.Post))
+    {
+
+        <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Site İsmi</label>
+            @Html.TextBoxFor(x=>x.SiteName, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.SiteName,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Adres</label>
+            @Html.TextBoxFor(x=>x.Adres, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Adres,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Şehir</label>
+            @Html.TextBoxFor(x=>x.Sehir, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Sehir,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Blok Sayısı</label>
+            @Html.TextBoxFor(x=>x.BlokSayısı, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.BlokSayısı,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Daire Sayısı</label>
+            @Html.TextBoxFor(x=>x.DaireSayısı, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.DaireSayısı,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Isınma Tipi</label>
+            @Html.TextBoxFor(x=>x.IsitmaTipi, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.IsitmaTipi,"", new{@class="text-danger"})
+            </div>
+        <div class="mb-3">
+            @Html.HiddenFor(x => x.SiteID)
+        </div>
+
+            <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+
+        </div>

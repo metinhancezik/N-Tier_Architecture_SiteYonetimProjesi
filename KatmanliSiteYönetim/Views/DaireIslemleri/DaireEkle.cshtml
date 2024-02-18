@@ -1,0 +1,38 @@
+﻿@model EntityLayer.Concrete.Daire
+
+@{
+    ViewData["Title"] = "DaireEkle";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@using (Html.BeginForm("DaireEkle", "DaireIslemleri", FormMethod.Post))
+{
+    <div>
+        <label>Blok Seçiniz:</label>
+        @Html.DropDownListFor(x => x.BlokID, ViewBag.Bloklar as SelectList, "Blok Seçiniz", new { @class = "form-control" })
+
+        @Html.ValidationMessageFor(x => x.BlokID, "", new { @class = "text-danger" })
+    </div>
+
+    <div>
+        <label>Daire Numarası:</label>
+        @Html.TextBoxFor(x => x.DaireNo, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.DaireNo, "", new { @class = "text-danger" })
+    </div>
+    <div>
+        <label>Kat Numarası:</label>
+        @Html.TextBoxFor(x=>x.KatNumarasi, new{@class="form-control"})
+        @Html.ValidationMessageFor(x => x.KatNumarasi, "", new { @class = "text-danger" })
+    </div>
+
+    <div>
+        <label>Extra Information:</label>
+        @Html.TextBoxFor(x=>x.ExtraInformation, new{@class="form-control"})
+        
+    </div>
+
+    <div>
+        <button type="submit" class="btn btn-primary">Kaydet</button>
+    </div>
+}
+

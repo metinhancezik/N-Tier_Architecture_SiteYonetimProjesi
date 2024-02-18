@@ -1,0 +1,186 @@
+﻿@using EntityLayer.Concrete
+
+@model List<Site>
+
+@{
+    ViewData["Title"] = "AdminSite";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+    <h2>Site İşlemleri</h2>
+    <br />
+    <h4>Düzenlemek İstediğiniz Siteyi Seçiniz veya Yenisi Ekleyiniz</h4>
+
+    <div class="container">
+    
+            <div class="form-group mb-2">
+                <div>
+                    <div class="dropdown">
+                        <button id="nameButton"class="btn btn-secondary dropdown-toggle p-3 m-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Spesifik Arama
+                        </button>
+                        <ul class="dropdown-menu">
+                         <li><button class="dropdown-item" id="SiteNameFilter">Site İsmi</button></li>
+                        <li><button class="dropdown-item" id="SehirFilter">Şehir</button></li>
+                          <li><button class="dropdown-item" id="AdresFilter">Adres</button></li>
+                        </ul>
+                    </div>
+                </div>
+                <div style="width:25%;float:left">
+                    @Html.TextBox("filterAra",null,new{@class="form-control",@placeholder="Filtrelenecek Kelimeyi Yazınız"})
+              
+                </div>
+
+
+                <div style="float:left;margin-left:20px;margin-bottom:20px;">
+                    <input type="submit" name="btn" value="Ara" class="btn btn-info" id="araButton" />
+                </div>
+
+            </div>
+
+    </div>
+
+
+
+
+<div class="container">
+
+	<table class="table table-bordered" id="tableSırala"></table>
+	<div id="pager"></div>
+
+</div>
+
+
+
+
+
+<a href="@Url.Action("ISLEM", "SiteIslemleri",new {parametre="ekle"})" class="btn btn-outline-success">Ekle</a>
+
+
+
+@section Scripts{
+    
+    <script>
+       
+        // With Ajax we are creating table
+       
+        $(document).ready(function () {
+            let mainCategory="Site";
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/ListUser/",
+                data: { MainCategory: mainCategory },
+                success: function (data) {
+                    console.log(data);
+                    let htmlst = "<table class='table table-bordered'> <tr> <th>Site İsmi </th><th> Şehir</th><th> Adres </th><th> Sil </th><th> Düzenle </th>";
+                    $.each(JSON.parse(data), (index, value) => {
+                        htmlst += `<tr> <td>${value.SiteName} </td> <td>${value.Sehir} </td> <td>${value.Adres} </td> <td><a href="/SiteIslemleri/SiteSil/${value.SiteID}" class="btn btn-outline-danger" onclick="showConfirmDialog(event)">Sil</a></td> <td><a href="/SiteIslemleri/SiteDuzenle/${value.SiteID}" class="btn btn-outline-primary">Düzenle</a></td> </td> </tr>`;
+                    });
+                    htmlst += "</table>";
+                    $("#tableSırala").html(htmlst);
+                }
+            });
+
+        });
+        
+       
+
+
+        $("#SiteNameFilter").click(function () {
+            $("#nameButton").text($(this).text());
+            $("#araButton").unbind("click").click(function () {
+            let filterAra = $("#filterAra").val();
+            let siteName="SiteIsmi";
+            let mainCategory="Site"
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/FilterAra/" ,
+                    data: { filterAra: filterAra, category: siteName, MainCategory:mainCategory },
+
+                    success: function (data) {
+                        console.log(data);
+                        let htmlst = "<table class='table table-bordered'> <tr> <th>Site İsmi </th><th> Şehir</th><th> Adres </th><th> Sil </th><th> Düzenle </th>";
+                        $.each(JSON.parse(data), (index, value) => {
+                            htmlst += `<tr> <td>${value.SiteName} </td> <td>${value.Sehir} </td> <td>${value.Adres} </td> <td><a href="/SiteIslemleri/SiteSil/${value.SiteID}" class="btn btn-outline-danger" onclick="showConfirmDialog(event)">Sil</a></td> <td> <a href="/SiteIslemleri/SiteDuzenle/${value.SiteID}" class="btn btn-outline-primary">Düzenle</a>  </td> </td> </tr>`;
+                        });
+                        htmlst += "</table>";
+                        $("#tableSırala").html(htmlst);
+                    }
+            });
+        });
+        });
+
+
+
+
+        $("#SehirFilter").click(function () {
+            $("#nameButton").text($(this).text());
+            $("#araButton").unbind("click").click(function () {
+            let filterAra = $("#filterAra").val();
+            let siteName = "SehirIsmi";
+                let mainCategory = "Site"
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/FilterAra/",
+                    data: { filterAra: filterAra, category: siteName, MainCategory: mainCategory },
+
+                    success: function (data) {
+                        console.log(data);
+                        let htmlst = "<table class='table table-bordered'> <tr> <th>Site İsmi </th><th> Şehir</th><th> Adres </th><th> Sil </th><th> Düzenle </th>";
+                        $.each(JSON.parse(data), (index, value) => {
+                            htmlst += `<tr> <td>${value.SiteName} </td> <td>${value.Sehir} </td> <td>${value.Adres} </td> <td><a href="/SiteIslemleri/SiteSil/${value.SiteID}" class="btn btn-outline-danger" onclick="showConfirmDialog(event)">Sil</a></td> <td> <a href="/SiteIslemleri/SiteDuzenle/${value.SiteID}" class="btn btn-outline-primary">Düzenle</a>  </td> </td> </tr>`;
+                        });
+                        htmlst += "</table>";
+                        $("#tableSırala").html(htmlst);
+                    }
+
+            });
+        });
+            });
+
+
+
+
+        $("#AdresFilter").click(function () {
+            $("#nameButton").text($(this).text());
+            $("#araButton").unbind("click").click(function () {
+            let filterAra = $("#filterAra").val();
+            let siteName = "AdresIsmi";
+             let mainCategory = "Site"
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/FilterAra/",
+                    data: { filterAra: filterAra, category: siteName, MainCategory: mainCategory },
+                    success: function (data) {
+                        console.log(data);
+                        let htmlst = "<table class='table table-bordered'> <tr> <th>Site İsmi </th><th> Şehir</th><th> Adres </th><th> Sil </th><th> Düzenle </th>";
+                        $.each(JSON.parse(data), (index, value) => {
+                            htmlst += `<tr> <td>${value.SiteName} </td> <td>${value.Sehir} </td> <td>${value.Adres} </td> <td><a href="/SiteIslemleri/SiteSil/${value.SiteID}" class="btn btn-outline-danger" onclick="showConfirmDialog(event)">Sil</a></td> <td> <a href="/SiteIslemleri/SiteDuzenle/${value.SiteID}" class="btn btn-outline-primary">Düzenle</a>  </td> </td> </tr>`;
+                        });
+                        htmlst += "</table>";
+                        $("#tableSırala").html(htmlst);
+                    }
+            });
+        });
+    });
+
+
+    </script>
+
+
+ 
+
+   
+}
+
+

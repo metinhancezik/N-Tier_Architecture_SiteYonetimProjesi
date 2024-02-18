@@ -1,0 +1,59 @@
+﻿@using EntityLayer.Concrete
+
+@model List<Blok>
+@{
+    ViewData["Title"] = "AdminDaire";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<h2>Blok İşlemleri</h2>
+<br />
+<h4>Düzenlemek İstediğiniz Bloğu Seçiniz veya Yenisi Ekleyiniz</h4>
+
+
+
+
+
+
+
+<div class="p-2" id="tableSırala">
+
+</div>
+
+
+
+
+<a href="@Url.Action("BlokEkle", "BlokIslemleri")" class="btn btn-outline-success">Ekle</a>
+
+@section Scripts{
+    
+    <script>
+
+        $(document).ready(function () {
+            let mainCategory="Blok";
+            $.ajax({
+                contentType: "application/json",
+                dataType: "json",
+                type: "GET",
+                url: "/Admin/ListUser/",
+                data: { MainCategory: mainCategory },
+                success: function (data) {
+                    console.log(data);
+                    let htmlst = "<table class='table table-bordered'> <tr><th> Site İsmi</th><th> Blok İsmi </th><th> Sil </th><th> Düzenle </th>";
+                    $.each(JSON.parse(data), (index, value) => {
+                        htmlst += `<tr>  <td>${value.SiteName} </td> <td>${value.Adres} </td> <td><a href="/BlokIslemleri/BlokSil/${value.BlokID}" class="btn btn-outline-danger" onclick="showConfirmDialog(event)">Sil</a></td> <td> <a href="/BlokIslemleri/BlokDuzenle/${value.BlokID}" class="btn btn-outline-primary">Düzenle</a>  </td> </td> </tr>`;
+                    });
+                    htmlst += "</table>";
+                    $("#tableSırala").html(htmlst);
+                }
+            });
+
+        });
+
+
+    </script>
+    }
+
+
+ 

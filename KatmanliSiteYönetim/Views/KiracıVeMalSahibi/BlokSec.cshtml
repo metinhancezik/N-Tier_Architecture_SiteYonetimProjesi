@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewData["Title"] = "BlokSec";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+
+
+ @using (Html.BeginForm("BlokSec", "KiracıVeMalSahibi", FormMethod.Post))
+    {
+          <div class="mb-3">
+                         <label for="exampleInputEmail1" class="form-label">Blok Seçiniz</label>
+                     @Html.DropDownList("BLOKID", ViewBag.blokList as SelectList,new{@class="form-control"})
+                      @* @Html.ValidationMessageFor(x=>x.SiteName,"", new{@class="text-danger"})*@ 
+          </div>
+
+        <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+}

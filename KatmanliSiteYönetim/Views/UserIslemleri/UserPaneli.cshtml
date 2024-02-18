@@ -1,0 +1,77 @@
+﻿@model EntityLayer.Concrete.User
+@{
+    ViewData["Title"] = "UserPaneli";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+ <script>
+    $("input[name='role']").click(function () {
+        if ($(this).val() === "Site Yöneticisi") {
+            $("#YoneticiID").show();
+        } else {
+            $("#YoneticiID").hide();
+        }
+    });
+</script>
+    
+
+<h1>User Ekleme Kısmına Hoş Geldiniz</h1>
+<br />
+<div class="justify-content-center p-5">
+
+
+    @using (Html.BeginForm("UserPaneli", "UserIslemleri", FormMethod.Post))
+    {
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> Kullanıcı Adı</label>
+            @Html.TextBoxFor(x=>x.userName, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.userName,"", new{@class="text-danger"})
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Şifre</label>
+            @Html.TextBoxFor(x=>x.userPassword, new{@class="form-control"})
+           @Html.ValidationMessageFor(x=>x.userPassword,"", new{@class="text-danger"})  
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Telefon</label>
+            @Html.TextBoxFor(x=>x.phone, new{@class="form-control"})
+             @Html.ValidationMessageFor(x=>x.phone,"", new{@class="text-danger"})
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">E-Mail</label>
+            @Html.TextBoxFor(x=>x.email, new{@class="form-control"})
+             @Html.ValidationMessageFor(x=>x.email,"", new{@class="text-danger"})
+        </div>
+
+
+        <div class="mb-3">
+            <label for="role" class="form-label">Rol</label>
+            <div>
+                <label>
+                    @Html.RadioButtonFor(x => x.role, "Admin", new { @class = "form-check-input" })
+                    <span class="form-check-label">Admin</span>
+                </label>
+            </div>
+            <div>
+                <label>
+                    @Html.RadioButtonFor(x => x.role, "SiteYoneticisi", new { @class = "form-check-input" })
+                    <span class="form-check-label">Site Yöneticisi</span>
+                </label>
+            </div>
+            @Html.ValidationMessageFor(m => m.role, "", new { @class = "text-danger" })
+        </div>
+        <div class="mb-3"  id="yoneticiId">
+            <label for="yoneticiId" class="form-label">Yönetici ID</label>
+            @Html.TextBoxFor(x => x.YoneticiID,"null",new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+        
+
+    }
+
+    
+
+
+

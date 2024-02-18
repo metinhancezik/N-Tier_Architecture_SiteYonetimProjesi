@@ -1,0 +1,25 @@
+﻿@model EntityLayer.Concrete.Aidat
+@{
+    ViewData["Title"] = "AidatEkle";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+
+<div class="justify-content-center p-5">
+	<h1>Aidat Ekle</h1>
+    <br />
+
+    @using (Html.BeginForm("AidatEkle", "Aidat", FormMethod.Post))
+    {
+
+        <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Aidat Ücreti</label>
+            @Html.TextBoxFor(x=>x.Tutar, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Tutar,"", new{@class="text-danger"})
+        </div>
+
+        <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+
+</div>

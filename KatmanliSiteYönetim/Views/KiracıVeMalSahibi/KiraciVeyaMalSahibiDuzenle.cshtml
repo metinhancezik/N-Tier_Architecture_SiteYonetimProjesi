@@ -1,0 +1,55 @@
+﻿@model EntityLayer.Concrete.EvSahibiKiraci
+@{
+    ViewData["Title"] = "KiraciVeyaMalSahibiDuzenle";
+    Layout = "~/Views/Shared/_LayoutSiteManager.cshtml";
+}
+
+<h1>KiraciVeyaMalSahibiDuzenle</h1>
+
+<br />
+    <div class="justify-content-center p-5">
+
+          
+
+    @using (Html.BeginForm("KiraciVeyaMalSahibiUpdate", "KiraciVeyaMalSahibi", FormMethod.Post))
+    {
+
+        <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Daire İsmi</label>
+            @Html.TextBoxFor(x=>x.DaireID, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.DaireID,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Adres</label>
+            @Html.TextBoxFor(x=>x.Name, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Name,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Şehir</label>
+            @Html.TextBoxFor(x=>x.Surname, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Surname,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Blok Sayısı</label>
+            @Html.TextBoxFor(x=>x.Telefon, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Telefon,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Daire Sayısı</label>
+            @Html.TextBoxFor(x=>x.Mail, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Mail,"", new{@class="text-danger"})
+            </div>
+            <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Isınma Tipi</label>
+            @Html.TextBoxFor(x=>x.Role, new{@class="form-control"})
+            @Html.ValidationMessageFor(x=>x.Role,"", new{@class="text-danger"})
+            </div>
+        <div class="mb-3">
+            @Html.HiddenFor(x => x.EvSahibiID)
+        </div>
+
+            <button type="submit" class="btn btn-primary" id="SiteKaydetButton">Kaydet</button>
+
+    }
+
+        </div>
