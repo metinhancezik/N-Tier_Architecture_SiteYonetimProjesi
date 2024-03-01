@@ -6,7 +6,7 @@ It is an application which has n-tier application using asp.net core, mssql, boo
 
 
 ![image](https://github.com/metinhancezik/N-Tier_Architecture_SiteYonetimProjesi/assets/126672425/aaf5c0a7-6eef-41d8-b34f-9242b368d2cf)
-![image](https://github.com/metinhancezik/N-Tier_Architecture_SiteYonetimProjesi/assets/126672425/684f7757-ef89-42fe-a259-70dcec945966)
+
 ![image](https://github.com/metinhancezik/N-Tier_Architecture_SiteYonetimProjesi/assets/126672425/c5fa2227-db0a-4cbe-940f-c85e33e14231)
 ![image](https://github.com/metinhancezik/N-Tier_Architecture_SiteYonetimProjesi/assets/126672425/e54d87ad-e858-403c-a966-95c0b1c86b62)
 ![image](https://github.com/metinhancezik/N-Tier_Architecture_SiteYonetimProjesi/assets/126672425/2bd81aab-20ab-4040-9b3b-ffc2b1c0e91b)
